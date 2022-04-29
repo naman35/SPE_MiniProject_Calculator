@@ -1,17 +1,9 @@
 ---
-- name: Pull the Scientific Calculator image from docker hub in production/dev/qa/staging host and create the container on top of it.
-  hosts: Production_Host
+- name: Deploy a jar file
+  hosts: ubuntu18
+  remote_user: naman
   tasks:
-    - name: Pulling the Scientific Calculator Image
-      shell:
-        cmd: docker pull docker4naman/spe_miniproject_calculator:6
-    - name: Removing previous container.
-      shell:
-        cmd: docker rm Calculator
-      ignore_errors: yes
-    - name: Creating new Container using the pulled image
-      shell:
-        cmd: docker create -it -v /home/sanphire/Desktop/Scientific-Calculator/Scientific-Calculator.log:/Scientific-Calculator.log --name prod_calc docker4naman/spe_miniproject_calculator:6
-    - name: Remove unused and unncessary Images
-      shell:
-        cmd: docker image prune -f
+    - name: Copy jar file to home directory
+      copy:
+        src: ./target/ScientificCalculator-1.0-SNAPSHOT.jar
+        dest: ~/
