@@ -1,2 +1,2 @@
 [ubuntu18]
-172.16.134.172 ansible_user=naman
+192.168.43.50 ansible_user=naman
